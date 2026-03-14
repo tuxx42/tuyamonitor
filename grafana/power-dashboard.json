@@ -32,6 +32,44 @@
       }
     },
     {
+      "title": "Total Cost (THB)",
+      "description": "Cumulative electricity cost at 7 THB/kWh",
+      "type": "stat",
+      "gridPos": { "h": 6, "w": 6, "x": 12, "y": 0 },
+      "targets": [
+        { "expr": "tuya_total_energy_kwh * 7", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "currencyTHB",
+          "thresholds": { "steps": [
+            { "color": "green", "value": null },
+            { "color": "yellow", "value": 50000 },
+            { "color": "red", "value": 100000 }
+          ]}
+        }
+      }
+    },
+    {
+      "title": "Estimated Daily Cost (THB)",
+      "description": "Current power draw extrapolated to 24h cost at 7 THB/kWh",
+      "type": "stat",
+      "gridPos": { "h": 6, "w": 6, "x": 18, "y": 0 },
+      "targets": [
+        { "expr": "tuya_total_power_watts / 1000 * 24 * 7", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "currencyTHB",
+          "thresholds": { "steps": [
+            { "color": "green", "value": null },
+            { "color": "yellow", "value": 2000 },
+            { "color": "red", "value": 5000 }
+          ]}
+        }
+      }
+    },
+    {
       "title": "Power per Phase (W)",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 0, "y": 6 },
@@ -76,9 +114,22 @@
       }
     },
     {
+      "title": "Cumulative Cost (THB)",
+      "description": "Total electricity cost over time at 7 THB/kWh",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 22 },
+      "targets": [
+        { "expr": "tuya_total_energy_kwh * 7", "legendFormat": "Total Cost", "refId": "A" },
+        { "expr": "tuya_energy_kwh * 7", "legendFormat": "Phase {{phase}}", "refId": "B" }
+      ],
+      "fieldConfig": {
+        "defaults": { "unit": "currencyTHB" }
+      }
+    },
+    {
       "title": "Energy per Phase (kWh)",
       "type": "timeseries",
-      "gridPos": { "h": 8, "w": 24, "x": 0, "y": 22 },
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 22 },
       "targets": [
         { "expr": "tuya_energy_kwh", "legendFormat": "Phase {{phase}}", "refId": "A" }
       ],
