@@ -1,0 +1,2 @@
+tinytuya==1.17.6
+prometheus_client==0.22.1

@@ -1,0 +1,96 @@
+{
+  "annotations": { "list": [] },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "links": [],
+  "panels": [
+    {
+      "title": "Total Power (W)",
+      "type": "stat",
+      "gridPos": { "h": 6, "w": 6, "x": 0, "y": 0 },
+      "targets": [
+        { "expr": "tuya_total_power_watts", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": { "unit": "watt", "thresholds": { "steps": [
+          { "color": "green", "value": null },
+          { "color": "yellow", "value": 3000 },
+          { "color": "red", "value": 8000 }
+        ]}}
+      }
+    },
+    {
+      "title": "Total Energy (kWh)",
+      "type": "stat",
+      "gridPos": { "h": 6, "w": 6, "x": 6, "y": 0 },
+      "targets": [
+        { "expr": "tuya_total_energy_kwh", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": { "unit": "kwatth" }
+      }
+    },
+    {
+      "title": "Power per Phase (W)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 6 },
+      "targets": [
+        { "expr": "tuya_power_watts", "legendFormat": "Phase {{phase}}", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": { "unit": "watt" }
+      }
+    },
+    {
+      "title": "Voltage per Phase (V)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 6 },
+      "targets": [
+        { "expr": "tuya_voltage_volts", "legendFormat": "Phase {{phase}}", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": { "unit": "volt" }
+      }
+    },
+    {
+      "title": "Current per Phase (A)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 14 },
+      "targets": [
+        { "expr": "tuya_current_amps", "legendFormat": "Phase {{phase}}", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": { "unit": "amp" }
+      }
+    },
+    {
+      "title": "Power Factor per Phase",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 14 },
+      "targets": [
+        { "expr": "tuya_power_factor", "legendFormat": "Phase {{phase}}", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": { "unit": "none", "min": 0, "max": 1 }
+      }
+    },
+    {
+      "title": "Energy per Phase (kWh)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 24, "x": 0, "y": 22 },
+      "targets": [
+        { "expr": "tuya_energy_kwh", "legendFormat": "Phase {{phase}}", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": { "unit": "kwatth" }
+      }
+    }
+  ],
+  "schemaVersion": 39,
+  "tags": ["power", "tuya", "energy"],
+  "templating": { "list": [] },
+  "time": { "from": "now-24h", "to": "now" },
+  "title": "Kira Kai - Power Monitor",
+  "uid": "kira-kai-power"
+}
